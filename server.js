@@ -25,7 +25,7 @@ app.post('/add', addInfo);
 
 function addInfo(req, res) {
 	projectData['date'] = req.body.date;
-	projectData['temp'] = req.body.temp;
+	projectData['temp'] = req.body.main.temp;
 	projectData['content'] = req.body.content;
 };
 
