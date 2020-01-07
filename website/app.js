@@ -60,13 +60,13 @@ const postData = async ( url = 'http://localhost:5000/add', data = {})=> {
 
 /* Function to GET Project Data */
 const updateUI = async () => {
-	const request = await fetch('/all');
+	const request = await fetch('/all')
 	try{
 		const allData = await request.json();
 		console.log(allData);
-		document.getElementById('date').innerHTML = allData[0].date;
+		document.getElementById('date').innerHTML = allData[0].newDate;
 		document.getElementById('temp').innerHTML = allData[0].temperature;
-		document.getElementById('content').innerHTML = allData[0].newResponse;
+		document.getElementById('content').innerHTML = allData[0].content;
 	}catch(error) {
 		console.log("error", error);
 	}
