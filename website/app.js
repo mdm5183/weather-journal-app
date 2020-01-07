@@ -20,7 +20,7 @@ function performAction(e) {
 	.then(function(data) {
 		console.log(data)
 		console.log(newResponse)
-		postData('/add', {date:data.date, temperature:data.main.temp, content:newResponse})
+		postData('/add', {date:newDate, temperature:data.main.temp, newResponse})
 	})
 	.then(
 		updateUI()
