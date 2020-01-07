@@ -37,8 +37,8 @@ app.post('/add', addWeather)
 function addWeather(req, res) {
 	newData = {
 		temperature: req.body.temperature,
-		date: req.body.date,
-		content: req.body.newResponse,
+		date: newDate,
+		content: newResponse,
 	}
 	projectData.push(newData);
 	res.send(newData)
