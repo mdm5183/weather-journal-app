@@ -21,7 +21,7 @@ function performAction(e) {
 	.then(function(data) {
 		console.log(data)
 		console.log(newResponse)
-		postData('/add', {date:newDate, temp:data.main.temp, content:newResponse})
+		postData('/add', {date:newDate, temp:data.main.temp, newResponse})
 	})
 	.then(
 		updateUI()
@@ -64,9 +64,9 @@ const updateUI = async () => {
 	try{
 		const allData = await request.json();
 		console.log(allData);
-		// document.getElementById('date').innerHTML = allData[0].newDate;
-		// document.getElementById('temp').innerHTML = allData[0].temperature;
-		// document.getElementById('content').innerHTML = allData[0].newResponse;
+		document.getElementById('date').innerHTML = allData.temperature;
+		document.getElementById('temp').innerHTML = allData.date;
+		document.getElementById('content').innerHTML = allData.content;
 	}catch(error) {
 		console.log("error", error);
 	}
