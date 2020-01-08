@@ -1,6 +1,7 @@
 // Create a new date instance dynamically with JS
 let d = new Date();
 let newDate = d.getMonth()+'.'+ d.getDate()+'.'+ d.getFullYear();
+console.log(newDate);
 
 // Personal API Key for OpenWeatherMap API
 let baseURL =  'http://api.openweathermap.org/data/2.5/weather?units=imperial&zip='
@@ -20,7 +21,7 @@ function performAction(e) {
 	.then(function(data) {
 		console.log(data)
 		console.log(newResponse)
-		postData('/add', {date:newDate, temperature:data.main.temp, newResponse})
+		postData('/add', {date:newDate, temp:data.main.temp, content:newResponse})
 	})
 	.then(
 		updateUI()
@@ -39,7 +40,7 @@ const getWeather = async (baseURL, newZip, apiKey)=>{
 }
 
 /* Function to POST data */
-const postData = async ( url = 'http://localhost:5000/add', data = {})=> {
+const postData = async (url = '', data = {})=> {
 	const response = await fetch(url, {
 		method: 'POST',
 		mode: 'cors',
@@ -52,7 +53,6 @@ const postData = async ( url = 'http://localhost:5000/add', data = {})=> {
 	try {
 		const newData = await response.json();
 		console.log(newData);
-		return(newData)
 	}catch(error) {
 		console.log("error", error);
 	}
@@ -64,9 +64,9 @@ const updateUI = async () => {
 	try{
 		const allData = await request.json();
 		console.log(allData);
-		document.getElementById('date').innerHTML = allData[0].newDate;
-		document.getElementById('temp').innerHTML = allData[0].temperature;
-		document.getElementById('content').innerHTML = allData[0].content;
+		// document.getElementById('date').innerHTML = allData[0].newDate;
+		// document.getElementById('temp').innerHTML = allData[0].temperature;
+		// document.getElementById('content').innerHTML = allData[0].newResponse;
 	}catch(error) {
 		console.log("error", error);
 	}
