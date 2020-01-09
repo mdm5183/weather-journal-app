@@ -23,16 +23,17 @@ app.use(express.static('website'));
 const port = 5000;
 const server = app.listen(port, listening);
 
+// Confirm server is running
 function listening() {
 	console.log(`running on localhost: ${port}`)
 };
 
-//GET 
+//GET route
 app.get('/all', function (req, res) {
 	res.send(projectData);
 });
 
-// POST 
+// POST route
 app.post('/add', (req, res) => {
 	console.log(req.body);
 	newData = {
