@@ -16,8 +16,6 @@ month[11] = "December";
 var n = month[d.getMonth()];
 let newDate = n+' '+ d.getDate()+', '+ d.getFullYear();
 
-console.log(newDate);
-
 // Personal API Key for OpenWeatherMap API
 let baseURL =  'http://api.openweathermap.org/data/2.5/weather?units=imperial&zip='
 const apiKey = '&APPID=bd13cd89e2841acdbab6011ea4942ce9'
@@ -33,15 +31,15 @@ function performAction(e) {
 	const newResponse = document.getElementById('feelings').value;
 	
 	getWeather(baseURL, newZip, apiKey)
+
 	.then(function(data) {
 		console.log(data)
-		console.log(newResponse)
 		postData('/add', {date:newDate, temp:data.main.temp, newResponse})
 	})
-	.then(
-		updateUI()
-		)
-	};
+	.then(setTimeout(function() {
+		updateUI();
+		}, 700));
+};
 
 /* Function to GET Web API Data*/
 const getWeather = async (baseURL, newZip, apiKey)=>{
@@ -73,7 +71,7 @@ const postData = async (url = '', data = {})=> {
 	}
 }
 
-/* Function to GET Project Data */
+/* Function to update UI data */
 const updateUI = async () => {
 	const request = await fetch('/all')
 	try{
